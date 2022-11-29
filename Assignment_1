@@ -1,0 +1,170 @@
+package assignment;
+import javax.swing.*;
+public class table {
+	public static int english2(String s[][])
+	{
+		int n=s.length;
+		int sum=0;
+		for(int i=0;i<n;i++)
+		{
+			int m=Integer.parseInt(s[i][0]);
+			if(m==2)
+			{
+			int l=Integer.parseInt(s[i][2]);
+			sum+=l;
+			}
+		}
+		return sum;
+	}
+	public static int maths2(String s[][])
+	{
+		int n=s.length;
+		int sum=0;
+		for(int i=0;i<n;i++)
+		{
+			int m=Integer.parseInt(s[i][0]);
+			if(m==2)
+			{
+			int l=Integer.parseInt(s[i][3]);
+			sum+=l;
+			}
+		}
+		return sum;
+		//System.out.println(n);
+		
+	}
+	public static int science2(String s[][])
+	{
+		int n=s.length;
+		int sum=0;
+		for(int i=0;i<n;i++)
+		{
+			int m=Integer.parseInt(s[i][0]);
+			if(m==2)
+			{
+			int l=Integer.parseInt(s[i][3]);
+			sum+=l;
+			}
+		}
+		return sum;
+		//System.out.println(n);
+		
+	}
+	public static int english1(String s[][])
+	{
+		int n=s.length;
+		int sum=0;
+		for(int i=0;i<n;i++)
+		{
+			int m=Integer.parseInt(s[i][0]);
+			if(m==1)
+			{
+			int l=Integer.parseInt(s[i][2]);
+			sum+=l;
+			}
+		}
+		return sum;
+	}
+	public static int maths1(String s[][])
+	{
+		int n=s.length;
+		int sum=0;
+		for(int i=0;i<n;i++)
+		{
+			int m=Integer.parseInt(s[i][0]);
+			if(m==1)
+			{
+			int l=Integer.parseInt(s[i][3]);
+			sum+=l;
+			}
+		}
+		return sum;
+	}
+	public static int science1(String s[][])
+	{
+		int n=s.length;
+		int sum=0;
+		for(int i=0;i<n;i++)
+		{
+			int m=Integer.parseInt(s[i][0]);
+			if(m==1)
+			{
+			int l=Integer.parseInt(s[i][3]);
+			sum+=l;
+			}
+		}
+		return sum;
+		//System.out.println(n);
+		
+	}
+	public static void maxavg(String s[][])
+	{
+		int avg1=0;
+		String name="";
+		String sem="";
+		for(int i=0;i<s.length;i++)
+		{
+			int s1=0;
+			int avg=0;
+			for(int j=2;j<s[i].length;j++)
+			{
+				s1+=Integer.parseInt(s[i][j]);
+			}
+			avg=s1/3;
+			if(avg>avg1)
+			{
+				avg1=avg;
+				sem=s[i][0];
+				name=s[i][1];
+			}
+		}
+		System.out.println("Maximum average marks in sem "+sem+" with "+avg1+" is "+name);
+	}
+	public static void main(String[] args) {
+		String column[]= {"sem","Name","English","Maths","Science"};
+		String data[][]= {{"1","Revanth","87","95","89"},{"1","sham","97","85","79"},{"1","Ram","77","65","99"},{"1","sudheer","97","95","89"},{"2","Revanth","77","85","99"},{"2","sham","97","75","89"},{"2","Ram","97","85","69"},{"2","sudheer","97","75","69"}};
+		JTable tab=new JTable(data,column);
+		JFrame frame=new JFrame("Student database");
+		frame.add(new JScrollPane(tab));
+		frame.setSize(500,500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		int l=data.length;
+		int l2=0;
+		for(int i=0;i<l;i++)
+		{
+			int m=Integer.parseInt(data[i][0]);
+			if(m==2)
+			{
+				l2++;
+			}
+		}
+		int l1=0;
+		for(int i=0;i<l;i++)
+		{
+			int m=Integer.parseInt(data[i][0]);
+			if(m==1)
+			{
+				l1++;
+			}
+		}
+		int n2=(english2(data)+maths2(data)+science2(data))/(l2*3);
+		System.out.println("Average Percentage of whole class in recent semester = "+n2);
+		System.out.println("Average marks of Students in a subject English recent semester = "+(english2(data)/l2));
+		System.out.println("Average marks of Students in a subject Maths recent semester = "+(maths2(data)/l2));
+		System.out.println("Average marks of Students in a subject Science recent semester = "+(science2(data)/l2));
+		int n1=(english1(data)+maths1(data)+science1(data))/(l1*3);
+		System.out.println("Average marks of Students in a subject English first semester = "+(english1(data)/l1));
+		System.out.println("Average marks of Students in a subject Maths first semester = "+(maths1(data)/l1));
+		System.out.println("Average marks of Students in a subject Science first semester = "+(science1(data)/l1));
+		int e=((english2(data)/l2)+(english1(data)/l1))/2;
+		int m=((maths2(data)/l2)+(maths1(data)/l1))/2;
+		int s=((science2(data)/l2)+(science1(data)/l1))/2;
+		System.out.println("Average marks of Students in a subject English both semester = "+e);
+		System.out.println("Average marks of Students in a subject Maths both semester = "+m);
+		System.out.println("Average marks of Students in a subject Science both semester = "+s);
+		maxavg(data);
+		
+	}
+
+}
